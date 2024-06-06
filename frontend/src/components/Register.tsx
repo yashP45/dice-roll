@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import { setToken, setUsername } from '../store/userslice';
+import { useAppDispatch } from '../hooks';
 const Register: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
 const navigate = useNavigate()
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/register', { username, password });
-navigate('/bet')
+     const response = await axios.post("https://dice-roll-6mju.onrender.com/api/register", { username, password });
+      dispatch(setToken(response.data.token));
+      dispatch(setUsername(username));
+      navigate('/bet')
     } catch (error) {
       alert('Registration failed');
     }
@@ -23,7 +27,7 @@ navigate('/bet')
       <TextField
         label="Username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setusername(e.target.value)}
         fullWidth
         margin="normal"
       />

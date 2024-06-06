@@ -36,7 +36,7 @@ const Betting: React.FC = () => {
     setRolling(true);
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/update-points',
+        'https://dice-roll-6mju.onrender.com/api/update-points',
         { bet, option },
         { headers: { Authorization: `Bearer ${token}` } }
       );

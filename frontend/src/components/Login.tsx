@@ -12,7 +12,7 @@ const navigate = useNavigate()
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { username, password });
+      const response = await axios.post('https://dice-roll-6mju.onrender.com/api/login', { username, password });
       dispatch(setToken(response.data.token));
       dispatch(setUsername(username));
      navigate("/bet")

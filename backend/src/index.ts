@@ -29,7 +29,8 @@ app.post('/api/register', async (req: Request, res: Response) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   users.push({ username, password: hashedPassword });
 
-  res.status(201).json({ message: 'User registered successfully' });
+  const token = jwt.sign({ username: username }, process.env.TOKEN_SECRET || 'secretkey', { expiresIn: '1h' });
+  res.status(201).json({ message: 'User registered successfully' , token: token });
 });
 
 app.post('/api/login', async (req: Request, res: Response) => {
