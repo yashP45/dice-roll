@@ -62,7 +62,7 @@ const Betting: React.FC = () => {
   const handleReset = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/reset-points',
+        'https://dice-roll-6mju.onrender.com/api/reset-points',
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -79,12 +79,12 @@ const Betting: React.FC = () => {
   };
 
   return (
-    <Box  sx={{  backgroundImage: "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiEAVRC2gqEJKSCYXbG0Uz42wfWMOTPXY1hA&s)"}}>
-    <Box sx={{ px: 5 , py: 5}}>
+
+    <Box sx={{ px: 3 , py: 3}}>
       <Typography variant="h6">Welcome, {username}</Typography>
       <Typography variant="h6" sx={{textAlign: 'center' , mt: 5 , fontWeight: "bold"}}>Points: {points}</Typography>
       <Typography  sx={{mt: 5 , mb:3}}>Select Bet Amount</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around', mt: 2, width: '50vw' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-around', mt: 2, width: '70vw' }}>
        
         <Button
           variant="contained"
@@ -181,7 +181,7 @@ const Betting: React.FC = () => {
         </Button>
       </Box>
     </Box>
-    </Box>
+  
   );
 };
 
